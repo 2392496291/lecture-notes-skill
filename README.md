@@ -3,6 +3,8 @@
 
 2.对于期末复习的整理，总是喜欢用1.1之类的符号来代替知识点
 
+3.对于课堂的PDF等材料图片，总是展示出一整张图片没有聚焦到具体
+
 # lecture-notes — 课件翻译与知识点整理技能
 
 > A [Claude Code](https://claude.com/claude-code) / Agent Skill that turns English lecture
