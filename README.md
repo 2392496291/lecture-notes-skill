@@ -5,6 +5,8 @@
 
 3.对于课堂的PDF等材料图片，总是展示出一整张图片没有聚焦到具体
 
+4.对于长篇论文或者阅读材料没有简洁的梳理出知识点（已解决，后续会上传）
+
 # lecture-notes — 课件翻译与知识点整理技能
 
 > A [Claude Code](https://claude.com/claude-code) / Agent Skill that turns English lecture
