@@ -203,7 +203,7 @@ tags:
 
 ```bash
 grep -o '!\[\[[^]]*' "<文件>" | sed 's/!\[\[//; s/|.*//' | while read -r f; do
-  find /Users/dianyu/obsidian-knowledge/dianyu -name "$f" -print -quit | grep -q . || echo "缺失: $f"
+  find ~/obsidian-knowledge/<你的库> -name "$f" -print -quit | grep -q . || echo "缺失: $f"
 done
 ```
 

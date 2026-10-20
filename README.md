@@ -43,7 +43,7 @@ pip3 install --user pypdf
 或者点名技能：
 
 ```text
-用 lecture-notes 整理 ~/kcl文件/agent/w4
+用 lecture-notes 整理 ~/课件/week4
 ```
 
 笔记默认写到 `课程/<课程名>/weekN/`，图片放 `课程/<课程名>/附件/`；告诉它你的 Obsidian 库路径即可。
