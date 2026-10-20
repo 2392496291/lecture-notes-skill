@@ -76,14 +76,31 @@ export ANTHROPIC_API_KEY="sk-ant-..."
 
 API key 按 token 计费，并且会覆盖订阅登录；想切回订阅先 `unset ANTHROPIC_API_KEY`。
 
-**可选：第三方网关**
+**可选：其他模型提供商（非官方）**
+
+Claude Code 原生只支持 Anthropic Messages 协议。下面几家提供了 Anthropic 兼容端点，可以直接换 `ANTHROPIC_BASE_URL` 接入；官方只支持转发到 Claude 的网关，非 Claude 模型的行为和兼容性由提供商负责。
+
+| 提供商 | 申请 API Key | Anthropic 兼容 Base URL |
+|---|---|---|
+| DeepSeek | https://platform.deepseek.com/api_keys | `https://api.deepseek.com/anthropic` |
+| Kimi（月之暗面） | https://platform.moonshot.cn/console/api-keys | 国内 `https://api.moonshot.cn/anthropic`；国际 `https://api.moonshot.ai/anthropic` |
+| 智谱 GLM | https://bigmodel.cn/usercenter/proj-mgmt/apikeys | `https://open.bigmodel.cn/api/anthropic` |
+| MiniMax | https://platform.minimax.cn/console/plan | 国内 `https://api.minimax.cn/anthropic`；国际 `https://api.minimax.io/anthropic` |
+| 通义千问 Qwen | https://bailian.console.aliyun.com/?apiKey=1#/api-key-center | `https://dashscope.aliyuncs.com/apps/anthropic` |
+| OpenRouter（聚合多家模型） | https://openrouter.ai/keys | `https://openrouter.ai/api` |
+
+部分端点需要对应的订阅套餐（例如智谱 Coding Plan、MiniMax M Plan），以各家文档为准。
+
+以 DeepSeek 为例：
 
 ```bash
-export ANTHROPIC_BASE_URL="https://你的网关地址"
-export ANTHROPIC_AUTH_TOKEN="你的网关密钥"
+export ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic"
+export ANTHROPIC_AUTH_TOKEN="你的 DeepSeek API Key"
+export ANTHROPIC_MODEL="deepseek-flash"
+claude
 ```
 
-官方只支持转发到 Claude 的网关；把 Claude Code 接到非 Claude 模型属于社区做法，不受官方支持，升级后可能失效。
+模型名和 `ANTHROPIC_MODEL` / `ANTHROPIC_DEFAULT_*_MODEL` 以各家文档为准。国内站和国际站的 Key 不通用，Base URL 要和 Key 的区域一致；切换提供商前先 `unset ANTHROPIC_API_KEY`，避免旧凭据覆盖。OpenRouter 还要求显式设置 `export ANTHROPIC_API_KEY=""`。
 
 ### 3. 安装本技能
 
