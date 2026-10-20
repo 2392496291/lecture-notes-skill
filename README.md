@@ -16,14 +16,96 @@
 
 ## 怎么用
 
-### 1. 安装
+### 1. 安装 Claude Code（终端）
+
+macOS 13+ / Windows 10+，不需要预装 Node.js。
+
+**macOS：**
 
 ```bash
-git clone git@github.com:2392496291/lecture-notes-skill.git
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+装完新开一个终端，验证：
+
+```bash
+claude --version
+```
+
+也可以用 Homebrew：`brew install --cask claude-code`。Homebrew 不会自动更新，需要手动 `brew upgrade claude-code`。
+
+**Windows（PowerShell）：**
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+验证同上。
+
+### 2. 接入模型
+
+两种常用方式，选一种。
+
+**方式 A：Claude 账号登录（订阅）**
+
+需要 Pro / Max / Team / Enterprise 账号，免费版不支持 Claude Code。
+
+```bash
+claude
+```
+
+首次启动按提示在浏览器登录，成功后终端显示 `Login successful`。之后可用 `/login` 重新登录，`/status` 查看当前账号、模型和凭据来源。
+
+**方式 B：Anthropic API Key**
+
+在 https://platform.claude.com 创建 key，然后任选一种配置：
+
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."
+```
+
+或写入 `~/.claude/settings.json`：
+
+```json
+{
+  "env": {
+    "ANTHROPIC_API_KEY": "sk-ant-..."
+  }
+}
+```
+
+API key 按 token 计费，并且会覆盖订阅登录；想切回订阅先 `unset ANTHROPIC_API_KEY`。
+
+**可选：第三方网关**
+
+```bash
+export ANTHROPIC_BASE_URL="https://你的网关地址"
+export ANTHROPIC_AUTH_TOKEN="你的网关密钥"
+```
+
+官方只支持转发到 Claude 的网关；把 Claude Code 接到非 Claude 模型属于社区做法，不受官方支持，升级后可能失效。
+
+### 3. 安装本技能
+
+需要先装 Git：macOS 运行 `xcode-select --install`；Windows 安装 [Git for Windows](https://git-scm.com/download/win)。
+
+**macOS / Linux：**
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/2392496291/lecture-notes-skill.git
 cp -r lecture-notes-skill/lecture-notes ~/.claude/skills/
 ```
 
-Windows 放到 `%USERPROFILE%\.claude\skills\`。不需要改配置。
+**Windows（PowerShell）：**
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills"
+git clone https://github.com/2392496291/lecture-notes-skill.git
+Copy-Item -Recurse lecture-notes-skill\lecture-notes "$env:USERPROFILE\.claude\skills\"
+```
+
+不需要改配置。
 
 可选依赖（只有拆页、渲染图片时用到）：
 
@@ -32,7 +114,7 @@ pip3 install --user pypdf
 # 渲染器二选一：macOS 自带 sips；或 brew install poppler
 ```
 
-### 2. 使用
+### 4. 使用
 
 在 Claude Code 里直接把课件丢进去：
 
