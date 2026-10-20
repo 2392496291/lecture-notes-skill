@@ -11,6 +11,8 @@
 
 6.对于一个知识点，比如四个标准，没有分开，展示的一整段话
 
+出题范围是定义题目以及案例题
+
 # lecture-notes — 课件翻译与知识点整理技能
 
 > A [Claude Code](https://claude.com/claude-code) / Agent Skill that turns English lecture
